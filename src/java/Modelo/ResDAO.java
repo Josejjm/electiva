@@ -25,7 +25,7 @@ public class ResDAO {
     
     public List listar(String nombre){
         
-        String sql = "select * from res where nombre='"+nombre+"'";
+        String sql = "select id, DATE_FORMAT(fechae,'%d/%m/%Y'), precio, nombre, habitacion from res where nombre='"+nombre+"'";
         List<Res> lista = new ArrayList<>();
         try {
             con=cn.Conectar();
@@ -49,7 +49,8 @@ public class ResDAO {
     
     public List consultar(String habitacion){
         
-        String sql = "select fechae from res where habitacion='"+habitacion+"'";
+        String sql = "SELECT DATE_FORMAT(fechae,'%d/%m/%Y') AS fechae FROM res WHERE habitacion='"+habitacion+"' AND fechae >= CURRENT_TIMESTAMP";
+                      
         List<Res> lista = new ArrayList<>();
         try {
             con=cn.Conectar();

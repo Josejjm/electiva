@@ -6,8 +6,15 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 
 <%
+    Date date = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
+    
     HttpSession obse = request.getSession();
     String us = (String) obse.getAttribute("sesion");
 
@@ -63,7 +70,9 @@
                             
                             <div class="form-group">
                             <label>Fecha</label>
-                            <input type="date" name="txtFechaE" class="form-control" id="fi">
+                            
+                            <input type="date" name="txtFechaE" step="1" min="<%=dateFormat.format(date)%>">
+                            
                             </div>
                             <br>
                             
